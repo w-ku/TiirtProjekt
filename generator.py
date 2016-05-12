@@ -3,15 +3,12 @@ import matplotlib.pyplot as plt
 
 
 class TokenGenerator(object):
-	def __init__(self):
-		pass
 
-	def generate(self, lam, sample_size):
-		s = np.random.poisson(lam,sample_size)
-		return s
+    def generate_ts(self, lam):
+        x = (1.0/lam)
+        r = np.random.exponential(x)
+        return r
 
-	def histogram(self, lam, sample_size):
-		s = self.generate(lam,sample_size)
-		count, bins, ignored = plt.hist(s, normed=True)
-		plt.show()
-		return [count, bins, ignored]
+    def generate(self, lam, sample_size):
+        s = np.random.poisson(lam,sample_size)
+        return s

@@ -1,0 +1,5 @@
+*.pyc
+*.py.bak
+/trt
+in2.py
+main.py

@@ -1,6 +1,6 @@
 class Bucket(object):
 
-    def __init__(self, vz, lz, iz):
+    def __init__(self, vz, lz, iz, debug):
         """
                 vz - predkosc naplywu zetonow
                 lz - maksymalna liczba zetonow (pojemnosc wiadra)
@@ -10,6 +10,7 @@ class Bucket(object):
         self.vz = vz
         self.lz = lz
         self.iz = iz
+        self.debug = debug
 
     def odejmij_zetony(self):
         if self.iz > 0 and self.iz >= 1:
@@ -24,7 +25,8 @@ class Bucket(object):
             self.iz += 1
         else:
             self.iz = self.lz
-        print "Dodano zeton do wiadra."
+        if self.debug == 1:
+            print "Dodano zeton do wiadra."
 
         return self.iz
 

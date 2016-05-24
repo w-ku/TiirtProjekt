@@ -21,7 +21,9 @@ class DecisionModule(object):
                 zgloszenie.czas_akceptacji = time.clock()
                 self.obsluzone.append(zgloszenie)
                 bucket.odejmij_zetony()
+
             czas_oczek = zgloszenie.get_czas_oczekiwania()
+
             if self.debug == 1:
                 print "Czas oczekiwania: %s" % czas_oczek
                 print "\tZgloszenie obsluzone"

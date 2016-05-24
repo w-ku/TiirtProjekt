@@ -14,7 +14,7 @@ parser = optparse.OptionParser()
 
 parser.add_option('--debug', type="int", default=0)
 # docelowa liczba zaakceptowanych zgloszen -> warunek stopu
-parser.add_option('--accqty', type="int", default=30)
+parser.add_option('--accqty', type="int", default=60)
 # maksymalny rozmiar kolejki dla oczekujacych zgloszen
 parser.add_option('--lq', type="int", default=100)
 # maksymalna liczba zetonow w wiadrze
@@ -22,7 +22,7 @@ parser.add_option('--lz', type="int", default=40)
 # predkosc naplywania zetonow
 parser.add_option('--vz', type="int", default=5)
 # intensywnosc zgloszen
-parser.add_option('--lambda', type="int", default=15)
+parser.add_option('--lamb', type="int", default=15)
 
 
 options, remainder = parser.parse_args()
@@ -38,11 +38,11 @@ LZ = options.lz
 # predkosc naplywania zetonow
 VZ = options.vz
 # intensywnosc zgloszen
-LAMBDA = options.vz
+LAMBDA = options.lamb
 
 tc = TokenGenerator()
 dm = DecisionModule(DEBUG)
-bucket = Bucket(VZ, LZ, 0, DEBUG)
+bucket = Bucket(VZ, LZ, 1, DEBUG)
 kolejka = Queue(LQ, 0, DEBUG)
 
 
@@ -51,7 +51,7 @@ def generator_zgloszen():
     sum_odstep = 0
     start = time.time()
     total = 0
-
+    print [ACCQTY, LQ, LZ, VZ, LAMBDA]
     while len(dm.obsluzone) < ACCQTY:
 
         # print "DLA %s : " % (i+1)
@@ -77,12 +77,13 @@ def generator_zgloszen():
         total += ticket.czas_oczekiwania
 
     print "\n\n========== WYNIK =============\n"
-    print "CAŁKOWITY CZAS OCZEKIWANIA: {}".format(total)
     sredni_czas_oczekiwania = total/len(dm.obsluzone)
     print "SREDNI CZAS OCZEKIWANIA: {}".format(sredni_czas_oczekiwania)
-    print "ZGLOSZENIA OBSLUZONE: {}".format(len(dm.obsluzone))
-    print "ZGLOSZENIA W KOLEJCE: {}".format(len(kolejka.zgloszenia))
-    print "ZGLOSZENIA ODRZUCONE: {}".format(kolejka.odrzucone)
+    # print "ZGLOSZENIA OBSLUZONE: {}".format(len(dm.obsluzone))
+    # print "ZGLOSZENIA W KOLEJCE: {}".format(len(kolejka.zgloszenia))
+    # print "ZGLOSZENIA ODRZUCONE: {}".format(kolejka.odrzucone)
+    # print "ZOSTALO ZETONOW W WIADRZE: {}".format(bucket.iz)
+    print "PRAWDOPODOBIENSTWO ODRZUCENIA: {}".format(float(kolejka.odrzucone)/(kolejka.odrzucone+len(dm.obsluzone)))
 
 
 def uzupelnij_wiadro():
@@ -100,8 +101,8 @@ def uzupelnij_wiadro():
 def main():
     t1 = Thread(target=generator_zgloszen)
     t2 = Thread(target=uzupelnij_wiadro)
-    t1.start()
     t2.start()
+    t1.start()
 
 if __name__ == '__main__':
     print main()

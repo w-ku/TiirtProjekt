@@ -23,10 +23,10 @@ class Bucket(object):
 
         if (self.iz + 1) <= self.lz:
             self.iz += 1
+            if self.debug == 1:
+                print "Dodano zeton do wiadra."
         else:
             self.iz = self.lz
-        if self.debug == 1:
-            print "Dodano zeton do wiadra."
 
         return self.iz
 

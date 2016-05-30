@@ -1,5 +1,3 @@
 --accqty 100 --lq 10 --lz 20 --vz 5 --lamb 10
-
 --accqty 100 --lq 10 --lz 20 --vz 5 --lamb 15
-
 --accqty 100 --lq 10 --lz 20 --vz 5 --lamb 20

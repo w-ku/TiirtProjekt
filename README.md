@@ -21,3 +21,6 @@
  
 * OnOff (mode: debug)
   * python onOff.py --debug 1 --on 200 --off 2
+
+4. Zmiany
+ * Przyśpieszenie symulatora dzięki podzieleniu odstęów czasu przez wartość (ACCQTY/10).

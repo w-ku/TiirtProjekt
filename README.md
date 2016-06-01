@@ -24,4 +24,4 @@
 
 4. Zmiany
  * Przyśpieszenie symulatora dzięki podzieleniu odstęów czasu przez wartość (ACCQTY/10).
- * Powrót do wcześniejszej werscji generatora ON/OFF
+ * Powrót do wcześniejszej wersji generatora ON/OFF

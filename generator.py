@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 
 class TokenGenerator(object):
     def generate_onOff(self, On):
-        x = (1.0/On)
-        r = np.random.exponential(x)
+        r = np.random.exponential(On)
         return r
         
     def generate_ts(self, lam):

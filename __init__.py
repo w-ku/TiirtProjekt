@@ -59,7 +59,7 @@ def generator_zgloszen():
         gen = Ticket("pending", time.clock())
         dm.make_decision(gen, bucket, kolejka)
         # losowanie odstepu czasowego
-        odstep = tc.generate_ts(LAMBDA)
+        odstep = (tc.generate_ts(LAMBDA))/(ACCQTY/10)
         sum_odstep = sum_odstep + odstep
         time.sleep(odstep)
 
@@ -91,7 +91,7 @@ def uzupelnij_wiadro():
     sum_odstep = 0
     while len(dm.obsluzone) < ACCQTY:
         # 1/lambda:
-        x = (1.0/bucket.vz)
+        x = ((1.0/bucket.vz))/(ACCQTY/10)
         sum_odstep += x
         time.sleep(x)
         bucket.dodaj_zetony()

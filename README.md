@@ -4,7 +4,7 @@
   * lq {int}
   * lz {int}
   * vz {int}
-  * lambda {int}
+  * lamb {int}
 
 2. Objasnienie atrybutow
   * debug : informuje uzytkownika o kolejnosci uruchomionych funkcji
@@ -12,7 +12,7 @@
   * lq : maksymalny rozmiar kolejki dla oczekujacych zgloszen
   * lz : maksymalna liczba zetonow w wiadrze
   * vz : predkosc naplywania zetonow do wiadra
-  * lambda : intensywnosc naplywu zgloszen
+  * lamb : intensywnosc naplywu zgloszen (lambda)
 
 3. Przykład użycia
  
